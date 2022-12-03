@@ -3,12 +3,13 @@
             [clojure.test :refer [deftest is testing]]
             [clojure.java.io :as io]))
 
-;; First star question
 (deftest highest-total-calories-returns-highest-total
+  ;; First star question
   (testing "Getting highest elf output."
     (let [input (slurp (io/resource "day_1/calorie-list.txt"))]
       (is (= (highest-total-calories input 1) 71502))))
 
+  ;; Second star question
   (testing "Getting top three elf output."
     (let [input (slurp (io/resource "day_1/calorie-list.txt"))]
       (is (= (highest-total-calories input 3) 208191)))))
