@@ -4,9 +4,9 @@
             [clojure.java.io :as io]))
 
 (deftest shape-score
-  (is (:rock sut/shape-score) 1)
-  (is (:paper sut/shape-score) 2)
-  (is (:scissors sut/shape-score) 3))
+  (is (= (:rock sut/shape-score) 1))
+  (is (= (:paper sut/shape-score) 2))
+  (is (= (:scissors sut/shape-score) 3)))
 
 (deftest encrypted-shape-conversion
   (is (= (sut/encrypted-shape-conversion "X") :rock))
@@ -23,26 +23,26 @@
   (is (sut/paragraph-lines "A Y\nC Z") ["A Y" "C Z"])
   (is (sut/paragraph-lines "A Y") ["A Y"]))
 
-(deftest parse-paragraph-line
+(deftest parse-paragraph-lines
   (is (= (sut/parse-paragraph-line "A Y") [:rock :paper]))
   (is (= (sut/parse-paragraph-line "B X") [:paper :rock]))
   (is (= (sut/parse-paragraph-line "C Z") [:scissors :scissors])))
 
 (deftest calculate-matchup-score
   (testing "Rock match."
-    (is (= (sut/shape-matchup-score [:rock :rock]) 3))
-    (is (= (sut/shape-matchup-score [:rock :paper]) 6))
-    (is (= (sut/shape-matchup-score [:rock :scissors]) 0)))
+    (is (= (get-in sut/matchup-score [:rock :rock]) 3))
+    (is (= (get-in sut/matchup-score [:rock :paper]) 6))
+    (is (= (get-in sut/matchup-score [:rock :scissors]) 0)))
 
   (testing "Paper match."
-    (is (= (sut/shape-matchup-score [:paper :rock]) 0))
-    (is (= (sut/shape-matchup-score [:paper :paper]) 3))
-    (is (= (sut/shape-matchup-score [:paper :scissors]) 6)))
+    (is (= (get-in sut/matchup-score [:paper :rock]) 0))
+    (is (= (get-in sut/matchup-score [:paper :paper]) 3))
+    (is (= (get-in sut/matchup-score [:paper :scissors]) 6)))
 
   (testing "Scissors match."
-    (is (= (sut/shape-matchup-score [:scissors :rock]) 6))
-    (is (= (sut/shape-matchup-score [:scissors :paper]) 0))
-    (is (= (sut/shape-matchup-score [:scissors :scissors]) 3))))
+    (is (= (get-in sut/matchup-score [:scissors :rock]) 6))
+    (is (= (get-in sut/matchup-score [:scissors :paper]) 0))
+    (is (= (get-in sut/matchup-score [:scissors :scissors]) 3))))
 
 (deftest calculate-round-score
   (is (= (sut/round-score [:rock :paper]) 8))

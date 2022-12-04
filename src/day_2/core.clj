@@ -16,34 +16,30 @@
    "B" :paper
    "C" :scissors})
 
+(def matchup-score
+  {:rock
+   {:rock 3
+    :paper 6
+    :scissors 0}
+   :paper
+   {:rock 0
+    :paper 3
+    :scissors 6}
+   :scissors
+   {:rock 6
+    :paper 0
+    :scissors 3}})
+
 (defn paragraph-lines [s]
   (str/split-lines s))
 
 (defn parse-paragraph-line [s]
-  (let [l (str/split s #" ")]
-    [(shape-conversion (first l))
-     (encrypted-shape-conversion (second l))]))
-
-(defn shape-matchup-score [[x y]]
-  (condp = x
-    :rock
-    (condp = y
-      :rock 3
-      :paper 6
-      :scissors 0)
-    :paper
-    (condp = y
-      :rock 0
-      :paper 3
-      :scissors 6)
-    :scissors
-    (condp = y
-      :rock 6
-      :paper 0
-      :scissors 3)))
+  (let [[x y] (str/split s #" ")]
+    [(shape-conversion x)
+     (encrypted-shape-conversion y)]))
 
 (defn round-score [[x y :as t]]
-  (+ (shape-matchup-score t) (shape-score y)))
+  (+ (get-in matchup-score t) (shape-score y)))
 
 (defn total-score [s]
   (->> (paragraph-lines s)
