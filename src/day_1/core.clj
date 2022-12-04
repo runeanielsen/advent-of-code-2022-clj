@@ -1,10 +1,12 @@
 (ns day-1.core
   (:require [clojure.string :as str]))
 
-(defn highest-total-calories [calorie-list n]
-  (->> (str/split calorie-list #"\n\n")
-       (map #(map (fn [s] (Integer/parseInt s)) (str/split % #"\n")))
-       (map #(apply + %))
+(defn- paragraph-lines [s]
+  (for [paragraph (str/split s #"\n\n")]
+    (str/split paragraph #"\n")))
+
+(defn highest-total-calories [s n]
+  (->> (for [elf-calories (paragraph-lines s)]
+         (transduce (map parse-long) + elf-calories))
        (sort >)
-       (take n)
-       (apply +)))
+       (transduce (take n) + 0)))
