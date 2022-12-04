@@ -3,7 +3,7 @@
             [clojure.test :refer [deftest is testing]]
             [clojure.java.io :as io]))
 
-(deftest shape-score-gives-correct-points
+(deftest shape-score
   (is (:rock sut/shape-score) 1)
   (is (:paper sut/shape-score) 2)
   (is (:scissors sut/shape-score) 3))
@@ -28,31 +28,31 @@
   (is (= (sut/parse-paragraph-line "B X") [:paper :rock]))
   (is (= (sut/parse-paragraph-line "C Z") [:scissors :scissors])))
 
-(deftest calculate-match-point
+(deftest calculate-matchup-score
   (testing "Rock match."
-    (is (= (sut/match-point [:rock :rock]) 3))
-    (is (= (sut/match-point [:rock :paper]) 6))
-    (is (= (sut/match-point [:rock :scissors]) 0)))
+    (is (= (sut/shape-matchup-score [:rock :rock]) 3))
+    (is (= (sut/shape-matchup-score [:rock :paper]) 6))
+    (is (= (sut/shape-matchup-score [:rock :scissors]) 0)))
 
   (testing "Paper match."
-    (is (= (sut/match-point [:paper :rock]) 0))
-    (is (= (sut/match-point [:paper :paper]) 3))
-    (is (= (sut/match-point [:paper :scissors]) 6)))
+    (is (= (sut/shape-matchup-score [:paper :rock]) 0))
+    (is (= (sut/shape-matchup-score [:paper :paper]) 3))
+    (is (= (sut/shape-matchup-score [:paper :scissors]) 6)))
 
   (testing "Scissors match."
-    (is (= (sut/match-point [:scissors :rock]) 6))
-    (is (= (sut/match-point [:scissors :paper]) 0))
-    (is (= (sut/match-point [:scissors :scissors]) 3))))
+    (is (= (sut/shape-matchup-score [:scissors :rock]) 6))
+    (is (= (sut/shape-matchup-score [:scissors :paper]) 0))
+    (is (= (sut/shape-matchup-score [:scissors :scissors]) 3))))
 
-(deftest calculate-turn-points
-  (is (= (sut/turn-points [:rock :paper]) 8))
-  (is (= (sut/turn-points [:paper :rock]) 1))
-  (is (= (sut/turn-points [:scissors :scissors]) 6)))
+(deftest calculate-round-score
+  (is (= (sut/round-score [:rock :paper]) 8))
+  (is (= (sut/round-score [:paper :rock]) 1))
+  (is (= (sut/round-score [:scissors :scissors]) 6)))
 
-(deftest rock-paper-scissors-score-is-calculated-correctly
+(deftest calculate-total-score
   (testing "Example input."
-    (is (= (sut/rock-paper-scissors-score "A Y\nB X\nC Z") 15)))
+    (is (= (sut/total-score "A Y\nB X\nC Z") 15)))
 
   (testing "User specific input example."
     (let [input (slurp (io/resource "day_2/input.txt"))]
-      (is (= (sut/rock-paper-scissors-score input) 9651)))))
+      (is (= (sut/total-score input) 9651)))))

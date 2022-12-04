@@ -24,7 +24,7 @@
     [(shape-conversion (first l))
      (encrypted-shape-conversion (second l))]))
 
-(defn match-point [[x y]]
+(defn shape-matchup-score [[x y]]
   (condp = x
     :rock
     (condp = y
@@ -42,12 +42,12 @@
       :paper 0
       :scissors 3)))
 
-(defn turn-points [[x y :as t]]
-  (+ (match-point t) (shape-score y)))
+(defn round-score [[x y :as t]]
+  (+ (shape-matchup-score t) (shape-score y)))
 
-(defn rock-paper-scissors [s]
+(defn total-score [s]
   (->> (paragraph-lines s)
        (transduce (comp (map parse-paragraph-line)
-                        (map turn-points))
+                        (map round-score))
                   +
                   0)))
