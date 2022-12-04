@@ -26,18 +26,21 @@
 
 (defn match-point [[x y]]
   (condp = x
-    :rock (condp = y
-            :rock 3
-            :paper 6
-            :scissors 0)
-    :paper (condp = y
-             :rock 0
-             :paper 3
-             :scissors 6)
-    :scissors (condp = y
-                :rock 6
-                :paper 0
-                :scissors 3)))
+    :rock
+    (condp = y
+      :rock 3
+      :paper 6
+      :scissors 0)
+    :paper
+    (condp = y
+      :rock 0
+      :paper 3
+      :scissors 6)
+    :scissors
+    (condp = y
+      :rock 6
+      :paper 0
+      :scissors 3)))
 
 (defn turn-points [[x y :as t]]
   (+ (match-point t) (shape-score y)))
