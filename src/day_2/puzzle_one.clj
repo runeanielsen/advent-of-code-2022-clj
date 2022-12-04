@@ -1,4 +1,4 @@
-(ns day-2.core
+(ns day-2.puzzle-one
   (:require [clojure.string :as str]))
 
 (def shape-score

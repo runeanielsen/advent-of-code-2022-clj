@@ -1,5 +1,5 @@
-(ns day-2.tests
-  (:require [day-2.core :as sut]
+(ns day-2.puzzle-one-tests
+  (:require [day-2.puzzle-one :as sut]
             [clojure.test :refer [deftest is testing]]
             [clojure.java.io :as io]))
 
