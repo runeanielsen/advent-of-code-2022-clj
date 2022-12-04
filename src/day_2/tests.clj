@@ -49,10 +49,10 @@
   (is (= (sut/turn-points [:paper :rock]) 1))
   (is (= (sut/turn-points [:scissors :scissors]) 6)))
 
-(deftest rock-paper-scissors
-  (testing "Shown example."
-    (is (= (sut/rock-paper-scissors "A Y\nB X\nC Z") 15)))
+(deftest rock-paper-scissors-score-is-calculated-correctly
+  (testing "Example input."
+    (is (= (sut/rock-paper-scissors-score "A Y\nB X\nC Z") 15)))
 
   (testing "User specific input example."
     (let [input (slurp (io/resource "day_2/input.txt"))]
-      (is (= (sut/rock-paper-scissors input) 9651)))))
+      (is (= (sut/rock-paper-scissors-score input) 9651)))))
