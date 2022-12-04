@@ -7,7 +7,7 @@
   ;; First star question
   (testing "Getting highest elf output."
     (let [input (slurp (io/resource "day_1/calorie-list.txt"))]
-      (is (= (sut/highest-total-calories input 1) 71502))))
+      (is (= (sut/highest-total-calories input) 71502))))
 
   ;; Second star question
   (testing "Getting top three elf output."
