@@ -48,7 +48,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw"]
          "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
          "ttgJtRGJQctTZtZT"
          "CrZsJsPPZsGzwwsLwLmpwMDw"]
-        (sut/seperate-rucksacks rucksacks))))
+        (sut/seperate rucksacks))))
 
 (deftest reorganization-output-correct-total-priorities
   (testing "Example input."
@@ -58,8 +58,8 @@ PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw"]
-      (is (= 157 (sut/reorganization rucksacks)))))
+      (is (= 157 (sut/reorganize rucksacks)))))
 
   (testing "User specific input."
     (let [rucksacks (slurp (io/resource "day_3/input.txt"))]
-      (is (= 8105 (sut/reorganization rucksacks))))))
+      (is (= 8105 (sut/reorganize rucksacks))))))

@@ -8,8 +8,8 @@
     (merge (f (range 97 124) (range 1 27))
            (f (range 65 91) (range 27 53)))))
 
-(defn seperate-rucksacks [s]
-  "Seperates the rucksacks."
+(defn seperate [s]
+  "Seperates the rucksacks from the other rucksacks."
   (str/split-lines s))
 
 (defn compartmentalize [s]
@@ -21,8 +21,8 @@
 and finds the item that is shared between them."
   (first (apply set/intersection (map set xs))))
 
-(defn reorganization [s]
+(defn reorganize [s]
   (let [xf (comp (map compartmentalize)
                  (map shared-item)
                  (map item-priorities))]
-    (transduce xf + 0 (seperate-rucksacks s))))
+    (transduce xf + 0 (seperate s))))
