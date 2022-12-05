@@ -16,8 +16,8 @@
   "Predicate checking if anything overlaps in ranges."
   (->> (map set xs)
        (apply set/intersection)
-       (count)
-       (< 0)))
+       (empty?)
+       (not)))
 
 (defn camp-cleanup [s]
   (->> (split-sections s)
