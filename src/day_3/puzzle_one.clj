@@ -3,7 +3,7 @@
             [clojure.set :as set]))
 
 (def item-priorities
-  "Value representations for items in the rucksack."
+  "Value priorities for items in the rucksack."
   (letfn [(f [r1 r2] (zipmap (map char r1) r2))]
     (merge (f (range 97 124) (range 1 27))
            (f (range 65 91) (range 27 53)))))

@@ -4,7 +4,7 @@
             [clojure.test :refer [deftest is are testing]]))
 
 ;; Handle number representations for items in the rucksack.
-(deftest rucksack-item-values-are-correct
+(deftest rucksack-item-priorities-are-correct
   (are [x y] (= x y)
     16 (sut/item-priorities \p)
     38 (sut/item-priorities \L)

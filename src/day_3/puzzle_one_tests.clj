@@ -42,13 +42,13 @@ PmmdzqPrVvPwwTWBwg
 wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
 ttgJtRGJQctTZtZT
 CrZsJsPPZsGzwwsLwLmpwMDw"]
-    (is ["vJrwpWtwJgWrhcsFMMfFFhFp"
-         "PmmdzqPrVvPwwTWBwg"
-         "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
-         "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
-         "ttgJtRGJQctTZtZT"
-         "CrZsJsPPZsGzwwsLwLmpwMDw"]
-        (sut/seperate rucksacks))))
+    (is (= ["vJrwpWtwJgWrhcsFMMfFFhFp"
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
+            "PmmdzqPrVvPwwTWBwg"
+            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
+            "ttgJtRGJQctTZtZT"
+            "CrZsJsPPZsGzwwsLwLmpwMDw"]
+           (sut/seperate rucksacks)))))
 
 (deftest reorganization-output-correct-total-priorities
   (testing "Example input."
