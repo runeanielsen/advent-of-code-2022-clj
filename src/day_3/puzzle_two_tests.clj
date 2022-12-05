@@ -23,7 +23,7 @@
     \t (sut/shared-item ["ttgJtRGJ" "QctTZtZT"])
     \s (sut/shared-item ["CrZsJsPPZsGz" "wwsLwLmpwMDw"])))
 
-;; Split the list of rucksacks
+;; Split the list of rucksacks into groups of elfs.
 (deftest can-seperate-elfs-into-groups
   (let [elfs "vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
