@@ -22,8 +22,7 @@ and finds the item that is shared between them."
   (first (apply set/intersection (map set xs))))
 
 (defn reorganization [s]
-  (->> (seperate-rucksacks s)
-       (map compartmentalize)
-       (map shared-item)
-       (map item-priorities)
-       (apply +)))
+  (let [xf (comp (map compartmentalize)
+                 (map shared-item)
+                 (map item-priorities))]
+    (transduce xf + 0 (seperate-rucksacks s))))
