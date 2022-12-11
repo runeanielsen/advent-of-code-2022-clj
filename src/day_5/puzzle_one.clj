@@ -21,8 +21,6 @@
         to-stack (stacks to)
         [new-from cargo-on-crane] (split-at (- (count from-stack) move-count) from-stack)
         new-to (concat to-stack (reverse cargo-on-crane))]
-    ;; First we update the 'from' stack
-    ;; then we add the cargo to the 'to' stack.
     (-> (assoc stacks from new-from)
         (assoc to new-to))))
 
