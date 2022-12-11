@@ -4,16 +4,14 @@
 (defn parse-cargo-stacks [s]
   (let [x (->> (str/split-lines s)
                (butlast)
-               (map #(partition-all 4 %))
-               (map #(interleave (range 1 10) %))
-               (mapcat #(into {} (partition-all 2) %))
+               (map (partial partition-all 4))
+               (map (partial interleave (range 1 10)))
+               (mapcat (partial into {} (partition-all 2)))
                (group-by key))]
     (into {} (for [[k v] x]
-               {k (->> (map val v)
-                       (flatten)
-                       (reverse)
+               {k (->> (mapcat val v)
                        (filter #(re-find #"[A-Z]" (str %)))
-                       (into []))}))))
+                       (reverse))}))))
 
 (defn parse-rearrangement-procedure [s]
   (mapv parse-long (re-seq #"\d+" s)))
